@@ -4,3 +4,4 @@ config/__pycache__
 blog/migrations
 blog/__pycache__
 .env
+db.sqlite3
