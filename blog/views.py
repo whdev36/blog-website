@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .forms import BloggerCreationForm
 from django.contrib.auth.decorators import login_required
+from .models import Blogger
 
 def login_user(request):
     if request.method == 'POST':
@@ -21,8 +22,9 @@ def login_user(request):
     return render(request, 'login.html', {})
 
 def home(request):
+    bloggers = Blogger.objects.all()
     template = loader.get_template('home.html')
-    return HttpResponse(template.render({}, request))
+    return HttpResponse(template.render({'bloggers': bloggers}, request))
 
 def register_user(request):
     if request.method == 'POST':
